@@ -1,13 +1,38 @@
 from classes.budget import Budget
 from classes.expenses import Expenses
 from classes.transactions import Transactions
+import csv
+from os.path import exists
 # After you write all your classes, use this file to call them all together and run your program
 
-budget = Budget()
-expenses = Expenses()
-transactions = Transactions()
+print(f"\n\t\t\tBUDGET TOOL\n*This tool is designed to help you calculate your monthly budget*")
 
-print(f"\n\t\t\tBUDGET TOOL\nThis tool is designed to help you calculate your monthly budget")
+name = input(f"\nPlease log in with your first name\n> ")
+
+print(f"\nWelcome {name}!")
+
+budget = Budget(name)
+expenses = Expenses(name)
+transactions = Transactions(name)
+
+if(exists(f'data/{name}_budget.csv') == False):
+    with open(f'data/{name}_budget.csv', 'w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow('')
+                file.close()
+
+if(exists(f'data/{name}_expenses.csv') == False):
+    with open(f'data/{name}_expenses.csv', 'w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow('')
+                file.close()
+
+if(exists(f'data/{name}_transactions.csv') == False):
+    with open(f'data/{name}_transactions.csv', 'w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow('')
+                file.close()
+
 
 choice = None
 while choice != '8':
